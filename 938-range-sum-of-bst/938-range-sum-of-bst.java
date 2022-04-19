@@ -17,11 +17,13 @@ class Solution {
     private int ans=0;
     private void findthesum(TreeNode root,int low,int high){
         if(root==null) return;
-        findthesum(root.left,low,high);
         if(low <= root.val && root.val <= high){
             ans+=root.val;
         }
-        findthesum(root.right,low,high);
+        if(low < root.val)
+            findthesum(root.left,low,high);
+        if(root.val< high)
+            findthesum(root.right,low,high);
     }
     public int rangeSumBST(TreeNode root, int low, int high) {
         findthesum(root,low,high);
