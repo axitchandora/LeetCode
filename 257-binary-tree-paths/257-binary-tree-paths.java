@@ -16,12 +16,11 @@
 class Solution {
     private void helper(TreeNode root,String path,List<String> res){
         if(root==null) return;
+        path+=""+root.val+"";
         if(root.left==null && root.right==null){
-            path+=""+root.val+"";
             res.add(path);
             return;
         }
-        path+=""+root.val+"";
         path+="->";
         helper(root.left,path,res);
         helper(root.right,path,res);
