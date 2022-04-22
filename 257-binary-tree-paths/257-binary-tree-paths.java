@@ -19,6 +19,7 @@ class Solution {
         if(root.left==null && root.right==null){
             path+=""+root.val+"";
             res.add(path);
+            return;
         }
         path+=""+root.val+"";
         path+="->";
