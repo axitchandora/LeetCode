@@ -15,6 +15,6 @@ class Solution {
         }
         return maxLength;
         // Time Complexity - Big O(N)
-        // Space Complexity - Big O(N)
+        // Space Complexity - Big O(1)
     }
 }
