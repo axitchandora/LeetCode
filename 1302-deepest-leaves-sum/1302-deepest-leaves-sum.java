@@ -14,15 +14,15 @@
  * }
  */
 class Solution {
-    private int currDepth=0,sumOfLeaves=0;
+    private int maxDepth=0,sumOfLeaves=0;
     private void findSumOfDeepestLeaves(TreeNode root,int depth){
         if(root==null) return;
         if(root.left==null && root.right==null){
-            if(currDepth==depth){
+            if(maxDepth==depth){
                 sumOfLeaves+=root.val;
             }
-            else if(currDepth<depth){
-                currDepth=depth;
+            else if(maxDepth<depth){
+                maxDepth=depth;
                 sumOfLeaves=root.val;
             }
         }
