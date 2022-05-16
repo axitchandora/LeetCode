@@ -8,7 +8,7 @@ class Solution {
             
             maxRepeatLetterCount=Math.max(maxRepeatLetterCount,letterFrequencyMap.get(rightChar));
             
-            if(windowEnd-windowStart+1-maxRepeatLetterCount>k){
+            while(windowEnd-windowStart+1-maxRepeatLetterCount>k){
                 char leftChar=s.charAt(windowStart);
                 letterFrequencyMap.put(leftChar,letterFrequencyMap.get(leftChar)-1);
                 windowStart++;
