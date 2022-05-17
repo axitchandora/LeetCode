@@ -1,30 +1,28 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        int windowStart=0,matched=0;
-        HashMap<Character,Integer> charFrequencyMap=new HashMap();
-        for(char chr:s1.toCharArray())
-            charFrequencyMap.put(chr,charFrequencyMap.getOrDefault(chr,0)+1);
-        
+        int strCountArray[]=new int[26];
+        int patternCountArray[]=new int[26];
+        for(char chr:s1.toCharArray()){
+            patternCountArray[chr-'a']++;
+        }
+        int start=0;
+        int windowSize=s1.length();
         for(int windowEnd=0;windowEnd<s2.length();windowEnd++){
-            char rightChar=s2.charAt(windowEnd);
-            
-            if(charFrequencyMap.containsKey(rightChar)){
-                charFrequencyMap.put(rightChar,charFrequencyMap.get(rightChar)-1);
-                if(charFrequencyMap.get(rightChar)==0)
-                    matched++;
+            strCountArray[s2.charAt(windowEnd)-'a']++;
+            if(windowEnd>=windowSize-1){
+                if(checkTwoArraysIsEqual(strCountArray,patternCountArray)) return true;
+                strCountArray[s2.charAt(start)-'a']--;
+                start++;
             }
-            if(matched==charFrequencyMap.size())
-                return true;
-            if(windowEnd >= s1.length()-1){
-                char leftChar=s2.charAt(windowStart++);
-                if(charFrequencyMap.containsKey(leftChar)){
-                    if(charFrequencyMap.get(leftChar)==0) matched--;
-                    charFrequencyMap.put(leftChar,charFrequencyMap.get(leftChar)+1);
-                }
-            }
-        }            
+        }
         return false;
     }
-    // Time Complexity- BIG O(N+M), where ‘N’ and ‘M’ are the no. of characters in the input str1 & str2
-    // Space Complexity- BIG O(M)
+    private static boolean checkTwoArraysIsEqual(int strCountArray[],int patternCountArray[]){
+        for(int i=0;i<26;i++){
+            if(strCountArray[i]!=patternCountArray[i])return false;
+        }
+        return true;
+    }
+    // Time Complexity -BIG O(N+M)
+    // Space Complexity - BIG O(1)
 }
