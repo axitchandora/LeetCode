@@ -10,27 +10,34 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-        if(head==null || head.next==null) return ;
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast!=null && fast.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
+        if (head == null || head.next == null)
+          return;
+
+        // find the middle of the LinkedList
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+          slow = slow.next;
+          fast = fast.next.next;
         }
-        ListNode secondHalfHead=reverse(slow);
-        ListNode firstHalfHead=head;
-        
-        while(firstHalfHead!=null && secondHalfHead!=null){
-            ListNode tmp=firstHalfHead.next;
-            firstHalfHead.next=secondHalfHead;
-            firstHalfHead=tmp;
-            
-            ListNode tmp2=secondHalfHead.next;
-            secondHalfHead.next=firstHalfHead;
-            secondHalfHead=tmp2;
-        }  
-        if(firstHalfHead!=null)
-            firstHalfHead.next=null;
+
+        // slow is now pointing to the middle node
+        ListNode headSecondHalf = reverse(slow); // reverse the second half
+        ListNode headFirstHalf = head;
+
+        // rearrange to produce the LinkedList in the required order
+        while (headFirstHalf != null && headSecondHalf != null) {
+          ListNode temp = headFirstHalf.next;
+          headFirstHalf.next = headSecondHalf;
+          headFirstHalf = temp;
+
+          temp = headSecondHalf.next;
+          headSecondHalf.next = headFirstHalf;
+          headSecondHalf = temp;
+        }
+
+        // set the next of the last node to 'null'
+        if (headFirstHalf != null)
+          headFirstHalf.next = null;
     }
     private ListNode reverse(ListNode head){
         ListNode prev=null;
