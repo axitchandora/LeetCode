@@ -14,20 +14,23 @@
  * }
  */
 class Solution {
-    private void helper(TreeNode root,int level,HashMap<Integer,Integer> rightViewNodesMap){
-        if(root==null)return;
-        rightViewNodesMap.put(level,root.val);
-        helper(root.left,level+1,rightViewNodesMap);
-        helper(root.right,level+1,rightViewNodesMap);
-    }
-    
     public List<Integer> rightSideView(TreeNode root) {
-        HashMap<Integer,Integer> rightViewNodesMap=new HashMap();
-        List<Integer> res=new ArrayList();
-        helper(root,0,rightViewNodesMap);
-        for(int i=0;i<rightViewNodesMap.size();i++){
-            res.add(rightViewNodesMap.get(i));
+        List<Integer> result=new ArrayList<>();
+        if(root==null) return result;
+        Queue<TreeNode> queue=new LinkedList();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int levelSize=queue.size();
+            for(int i=0;i<levelSize;i++){
+                TreeNode currentNode=queue.poll();
+                if(i==levelSize-1)
+                    result.add(currentNode.val);
+                if(currentNode.left!=null)
+                    queue.add(currentNode.left);
+                if(currentNode.right!=null)
+                    queue.add(currentNode.right);
+            }
         }
-        return res;
+        return result;
     }
 }
