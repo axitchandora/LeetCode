@@ -16,4 +16,6 @@ class Solution {
         }
         return sum;
     }
+    // Time Complexity - BIG O(log N)
+    // Space Compexity - BIG O(1)
 }
