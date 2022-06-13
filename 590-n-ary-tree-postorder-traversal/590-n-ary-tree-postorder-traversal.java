@@ -26,7 +26,8 @@ class Solution {
     }
     private void traversePostOrder(Node root, List<Integer> result){
         if(root==null)return;
-        root.children.forEach(node->traversePostOrder(node,result));
+        for(Node node:root.children)
+            traversePostOrder(node,result);
         result.add(root.val);
     }
 }
