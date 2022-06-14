@@ -20,13 +20,9 @@ class Node {
 class Solution {
     public int maxDepth(Node root) {
         if(root==null) return 0;
-        else if(root.children.isEmpty()) return 1;
-        else{
-            List<Integer> heights=new LinkedList(); 
-            for(Node node:root.children){
-                heights.add(maxDepth(node));
-            }
-            return Collections.max(heights)+1;
-        }        
+        int curr=0;
+        for(Node node:root.children)
+            curr=Math.max(curr,(maxDepth(node)));
+        return curr+1;
     }
 }
