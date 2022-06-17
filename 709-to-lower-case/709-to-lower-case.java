@@ -6,6 +6,6 @@ class Solution {
                 charArray[i]=(char)(charArray[i]+('a'-'A'));
             }
         }
-        return new String(charArray);
+        return String.valueOf(charArray);
     }
 }
