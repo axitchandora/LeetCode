@@ -1,7 +1,7 @@
 class ParkingSystem {
-    private int big;
-    private int medium;
-    private int small;
+    private static int big;
+    private static int medium;
+    private static int small;
     
     public ParkingSystem(int big, int medium, int small) {
         this.big=big;
