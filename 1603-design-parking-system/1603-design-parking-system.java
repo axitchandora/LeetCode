@@ -10,9 +10,11 @@ class ParkingSystem {
     }
     
     public boolean addCar(int carType) {
-        if(carType==1)return big-->0;
-        if(carType==2)return medium-->0;
-        if(carType==3)return small-->0;
+        switch(carType){
+            case 1:return big-->0;
+            case 2:return medium-->0;
+            case 3:return small-->0;
+        }
         return false;
     }
 }
