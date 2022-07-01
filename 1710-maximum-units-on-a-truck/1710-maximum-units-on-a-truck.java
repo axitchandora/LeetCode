@@ -8,7 +8,6 @@ class Pair{
 }
 
 class Solution {
-
     public int maximumUnits(int[][] boxTypes, int truckSize) {
         int maximumTotalUnits=0,curTruckSize=0;
         PriorityQueue<Pair> queue=new PriorityQueue<>((a,b)->Integer.compare(b.unitsPerBox,a.unitsPerBox));
@@ -24,7 +23,6 @@ class Solution {
                 maximumTotalUnits+=totalBoxesLeft*currPair.unitsPerBox;
                 currPair.boxes-=totalBoxesLeft;
                 curTruckSize+=totalBoxesLeft;
-                queue.add(currPair);
             }
         }
         return maximumTotalUnits;
