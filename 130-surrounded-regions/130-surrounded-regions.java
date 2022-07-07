@@ -14,14 +14,11 @@ class Solution {
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(board[i][j]=='O')
-                   dfs(board,i,j,'X'); 
+                   board[i][j]='X'; 
+                else if(board[i][j]=='A')
+                    board[i][j]='O';                    
             }
-        }
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(board[i][j]=='A') board[i][j]='O';
-            }
-        }        
+        }       
     }
     private void dfs(char[][] board,int i,int j,char newchar){
         if(i<0 || j<0 || i>=board.length || j>=board[0].length || board[i][j]=='X' || board[i][j]=='A')
