@@ -6,8 +6,8 @@ class Solution {
         int num=Math.abs(x);
         while(num>0){
             int tmp=num%10;
-            reverse=reverse*10+tmp;
             num/=10;
+            reverse=reverse*10+tmp;
         }
         if(reverse>=Integer.MAX_VALUE) return 0;
         if(isNegative) return -1*(int)reverse;
