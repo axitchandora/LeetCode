@@ -1,43 +1,21 @@
 class Solution {
-    static class Pair{
-        int v;
-        int level;
-        public Pair(int v,int level){
-            this.v=v;
-            this.level=level;
-        }
-    }
+    // 0 - Not Colored
+    // 1 - Blue
+    // 2 - Red
     public boolean isBipartite(int[][] graph) {
-        int m=graph.length;
-        int[] visited=new int[m];
-        Arrays.fill(visited,-1);
-        for(int v=0;v<m;v++){
-            if(visited[v]==-1){
-                boolean isTrue=checkComponentForBipartiteness(graph,v,visited);
-                if(!isTrue) return false;
-            }
-        }    
+        int[] color= new int[graph.length];
+        for(int i=0;i<graph.length;i++){
+            if(color[i]==0 && !validColor(graph,i,1,color)) return false;
+        }
         return true;
     }
-    
-    public boolean checkComponentForBipartiteness(int[][] graph,int src,int[] visited){
-        ArrayDeque<Pair> queue=new ArrayDeque<>();
-        queue.add(new Pair(src,0));
-        
-        while(queue.size()>0){
-            Pair rem=queue.poll();
-            
-            if(visited[rem.v]!=-1){
-                if(rem.level!=visited[rem.v])return false;
-            }else{
-                visited[rem.v]=rem.level;
-            }            
-            
-            for(int i=0;i<graph[rem.v].length;i++){
-                if(visited[graph[rem.v][i]]==-1){
-                    queue.add(new Pair(graph[rem.v][i],rem.level+1));
-                }
-            }
+    private boolean validColor(int[][] graph,int src,int curColor,int[] color){
+        if(color[src]!=0){
+            return color[src]==curColor;
+        }
+        color[src]=curColor;
+        for(int i:graph[src]){
+            if(!validColor(graph,i,-curColor,color)) return false;
         }
         return true;
     }
