@@ -2,12 +2,11 @@ class Solution {
     private List<List<Integer>> result;
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         result=new LinkedList<List<Integer>>();
-        boolean[] visited=new boolean[graph.length];
         List<Integer> currPath=new LinkedList<>();
-        dfs(graph,0,currPath,visited);
+        dfs(graph,0,currPath);
         return result; 
     }
-    private void dfs(int[][] graph,int src,List<Integer> currPath,boolean[] visited){
+    private void dfs(int[][] graph,int src,List<Integer> currPath){
         if(src==graph.length-1){
             currPath.add(src);
             result.add(new LinkedList(currPath));
@@ -15,13 +14,9 @@ class Solution {
             return;
         }
         currPath.add(src);
-        visited[src]=true;
         for(int v:graph[src]){
-            if(visited[v]==false){
-                dfs(graph,v,currPath,visited);
-            }
+                dfs(graph,v,currPath);
         }
-        visited[src]=false;
         currPath.remove(currPath.size()-1);
     }
 }
