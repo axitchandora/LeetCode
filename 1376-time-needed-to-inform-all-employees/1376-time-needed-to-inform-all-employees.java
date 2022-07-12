@@ -1,8 +1,6 @@
 class Solution {
-    int ans=0,max=0;
-    ArrayList<Integer>[] adjList;
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-        adjList=new ArrayList[n];
+        ArrayList<Integer>[] adjList=new ArrayList[n];
         for(int i=0;i<n;i++){
             adjList[i]=new ArrayList<Integer>();
         }
@@ -10,15 +8,19 @@ class Solution {
             if(manager[i]!=-1)
                 adjList[manager[i]].add(i);
         }
-        dfs(headID,informTime);
-        return max;
-    }
-    private void dfs(int manager,int[] informTime){
-        max=Math.max(max,ans);
-        for(int v:adjList[manager]){
-            ans+=informTime[manager];
-            dfs(v,informTime);
-            ans-=informTime[manager];
+        int maxTime=0;
+        ArrayDeque<int []> queue=new ArrayDeque<>();
+        queue.add(new int[]{headID,0});
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            while(size-- >0){                
+                int[] v=queue.poll();
+                maxTime=Math.max(maxTime,v[1]);
+                for(int nbr:adjList[v[0]]){                  
+                    queue.add(new int[]{nbr,v[1]+informTime[v[0]]});
+                }                
+            }
         }
+        return maxTime;
     }
 }
