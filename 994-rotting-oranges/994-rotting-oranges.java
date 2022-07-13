@@ -29,11 +29,12 @@ class Solution {
                     int rowDash=pair.row+dirs[i][0];
                     int colDash=pair.col+dirs[i][1];
                     
-                    if(rowDash<0 || colDash<0 || rowDash>=grid.length || 
-                       colDash>=grid[0].length || grid[rowDash][colDash]!=1) continue;
+                    if(rowDash>=0 && colDash>=0 &&  rowDash<grid.length && 
+                       colDash<grid[0].length &&  grid[rowDash][colDash]==1) {
                     queue.add(new Pair(rowDash,colDash));
                     grid[rowDash][colDash]=0;
-                    fresh--;                    
+                    fresh--;    
+                    }
                 }
             }
         }
