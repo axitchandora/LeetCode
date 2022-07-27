@@ -10,9 +10,9 @@ class Solution {
             // if current and the previous elements are same, create new subsets only from the subsets 
             // added in the previous step
             if(i>0 && nums[i]==nums[i-1])
-                startIndex=endIndex+1;
-            endIndex=subsets.size()-1;
-            for(int j=startIndex;j<=endIndex;j++){
+                startIndex=endIndex;
+            endIndex=subsets.size();
+            for(int j=startIndex;j<endIndex;j++){
                 // create a new subset from the existing subset and add the current element to it
                 List<Integer> set=new ArrayList<>(subsets.get(j));
                 set.add(nums[i]);
