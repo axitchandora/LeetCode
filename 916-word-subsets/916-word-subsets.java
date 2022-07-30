@@ -9,16 +9,13 @@ class Solution {
             }
         }
         
-        for(String a:words1){
-            boolean isValid=false;
+        search: for(String a:words1){
             int[] currFreqCount=countFreq(a);
             for(int i=0;i<26;i++){
                 if(maxFreqCount[i]>currFreqCount[i]){
-                    isValid=true;
-                    continue;
+                    continue search;
                 }
-            }
-            if(isValid)continue;                    
+            }                
             result.add(a);
         }
         return result;
