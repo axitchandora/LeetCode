@@ -1,20 +1,30 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int start=firstGreaterEqual(nums,target);
-        if(start==nums.length || nums[start]!=target){
-            return new int[]{-1,-1};
-        }
-        return new int[]{start,firstGreaterEqual(nums,target+1)-1};
+        int []result=new int[]{-1,-1};
+        result[0]=search(nums,target,false);
+        if(result[0]!=-1)
+            result[1]=search(nums,target,true);
+        return result;
     }
-    private int firstGreaterEqual(int[] nums, int target){
-        int left=0, right=nums.length;
-        while(left<right){
-            int mid=(left+((right-left)>>1));
-            if(nums[mid]<target)
-                left=mid+1;                
-            else
-               right=mid;
+    
+    private static int search(int[] arr, int key, boolean findMaxIndex) {
+        int keyIndex=-1;
+        int start=0, end=arr.length-1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(key<arr[mid]){
+                end=mid-1;
+            }else if(key>arr[mid]){
+                start=mid+1;
+            }else{
+                keyIndex=mid;
+                if(findMaxIndex){
+                    start=mid+1;
+                }else{
+                    end=mid-1;
+                }
+            }
         }
-        return left;
+        return keyIndex;
     }
 }
