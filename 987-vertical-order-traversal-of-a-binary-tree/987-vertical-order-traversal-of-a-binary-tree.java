@@ -13,8 +13,8 @@
  *     }
  * }
  */
-// Vertical Distance
-// Horizontal Distance
+// vd - Vertical Distance
+// hd - Horizontal Distance
 class Pair{
     int hd;
     int vd;
