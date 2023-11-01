@@ -29,11 +29,11 @@ class Solution {
                 ans.add(key);
             }
         }
-        int[] res =ans.stream().mapToInt(i -> i).toArray();
-        // int[] res = new int[ans.size()];
-        // for (int i = 0; i < ans.size(); i++) {
-        //     res[i] = ans.get(i);
-        // }
+        //int[] res =ans.stream().mapToInt(i -> i).toArray();
+        int[] res = new int[ans.size()];
+        for (int i = 0; i < ans.size(); i++) {
+            res[i] = ans.get(i);
+        }
         return res;
     }
     
