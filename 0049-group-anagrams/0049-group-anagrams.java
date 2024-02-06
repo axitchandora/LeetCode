@@ -3,10 +3,18 @@ class Solution {
         Map<String,List<String>> groups =new HashMap<>();
         
         for(String s:strs){
-            char[] chars= s.toCharArray();
-            Arrays.sort(chars);
+            int[] count= new int[26];
+            for(char c:s.toCharArray()){
+                count[c-'a']++;
+            }
             
-            String key=String.valueOf(chars);
+            StringBuilder sb=new StringBuilder();
+            for(int i=0;i<26;i++){
+                sb.append(count[i]);
+                sb.append('#');
+            }
+            String key= sb.toString();
+            
             groups.putIfAbsent(key,new ArrayList<>());
             groups.get(key).add(s);
         }
