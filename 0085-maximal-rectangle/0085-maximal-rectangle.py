@@ -13,18 +13,16 @@ class Solution:
             for i,h in stack:
                 maxHeight = max(maxHeight, h*(len(heights)-i))            
             return maxHeight
-            
-        historgram = [[0 for j in range(len(matrix[0]))] for i in range(len(matrix))]
+        maxArea = 0
+        historgram = [0] * len(matrix[0])
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
                 if(matrix[i][j] == "1" and i == 0):
-                    historgram[i][j] = 1 
+                    historgram[j] = 1 
                 elif(matrix[i][j] == '1'):
-                    historgram[i][j] = 1 + historgram[i-1][j]
+                    historgram[j] = 1 + historgram[j]
                 else:
-                    historgram[i][j] = 0
-        maxArea = 0
-        for heights in historgram:
-            maxArea = max(maxArea, largestRectangleArea(heights))
+                    historgram[j] = 0
+            maxArea = max(maxArea, largestRectangleArea(historgram))            
         return maxArea
         
