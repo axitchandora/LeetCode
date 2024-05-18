@@ -9,15 +9,14 @@ class Solution:
         self.res = 0
         def dfs(root):
             if not root:
-                return [0,0] # [size, coins]
-            l_size, l_coins = dfs(root.left)
-            r_size, r_coins = dfs(root.right)
+                return 0 # Extra coins
+            l_extra = dfs(root.left)
+            r_extra = dfs(root.right)
+            extra_coins = l_extra + r_extra + (root.val - 1)
+           
+            self.res += abs(extra_coins)
             
-            size = 1 + l_size + r_size
-            coins = root.val + l_coins + r_coins
-            self.res += abs(size-coins)
-            
-            return [size, coins]
+            return extra_coins
         dfs(root)
         return self.res
         
