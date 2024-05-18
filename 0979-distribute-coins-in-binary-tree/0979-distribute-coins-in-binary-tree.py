@@ -9,7 +9,7 @@ class Solution:
         self.res = 0
         def dfs(root):
             if not root:
-                return [0,0]
+                return [0,0] # [size, coins]
             l_size, l_coins = dfs(root.left)
             r_size, r_coins = dfs(root.right)
             
