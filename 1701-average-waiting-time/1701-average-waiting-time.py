@@ -3,10 +3,8 @@ class Solution:
         t = 0
         result = 0
         for start, end in customers:
-            if t > start:
-                result += t - start
-            else:
-                t = start
+            result += max(t - start,0)
+            t = max(t,start)
             result += end
             t += end
         return result/len(customers)
