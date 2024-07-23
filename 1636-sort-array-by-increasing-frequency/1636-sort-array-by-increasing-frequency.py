@@ -1,11 +1,8 @@
 class Solution:
     def frequencySort(self, nums: List[int]) -> List[int]:
         count = Counter(nums)
-        
-        def custom_sort(n):
-            return (count[n], -n)
-        
-        nums.sort(key=custom_sort)
+               
+        nums.sort(key=lambda n: (count[n], -n))
         
         return nums
         
