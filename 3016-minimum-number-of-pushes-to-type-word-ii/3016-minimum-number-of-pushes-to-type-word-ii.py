@@ -8,8 +8,8 @@ class Solution:
         
         res = 0
         distinct = 0
-        for cnt in counts:
-            res += cnt * (1 + distinct // 8)
+        for i, cnt in enumerate(counts):
+            res += cnt * (1 + i // 8)
             distinct += 1
         
         return res
