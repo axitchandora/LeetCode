@@ -1,5 +1,6 @@
 class Solution:
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        # Top to Bottom DP
         dp = {}
         
         def dfs(i):
