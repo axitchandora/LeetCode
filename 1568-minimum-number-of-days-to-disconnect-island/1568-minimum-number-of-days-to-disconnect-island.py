@@ -10,33 +10,26 @@ class Solution:
             neighbors = [[r+1,c],[r,c+1],[r-1,c],[r,c-1]]
             for nr, nc in neighbors:
                 dfs(nr, nc, visit)
-         
-        visit = set()
-        count = 0
-        for r in range(ROWS):
-            for c in range(COLS):
-                if grid[r][c] and (r,c) not in visit:
-                    dfs(r,c , visit)
-                    count += 1
-                    
-        if count != 1:
-            return 0
-        
-        land = list(visit)
-        for r, c in land:
-            grid[r][c] = 0
-            
+        def count_islands():
             visit = set()
             count = 0
-            for r2 in range(ROWS):
-                for c2 in range(COLS):
-                    if grid[r2][c2] and (r2,c2) not in visit:
-                        dfs(r2,c2 , visit)
+            for r in range(ROWS):
+                for c in range(COLS):
+                    if grid[r][c] and (r,c) not in visit:
+                        dfs(r,c , visit)
                         count += 1
+            return count     
+        if count_islands() != 1:
+            return 0
+        
+        for r in range(ROWS):
+            for c in range(COLS):
+                if grid[r][c] == 1 :
+                    grid[r][c] = 0
 
-            if count != 1:
-                return 1
-            grid[r][c] = 1
+                    if count_islands() != 1:
+                        return 1
+                    grid[r][c] = 1
         return 2
             
             
