@@ -7,7 +7,7 @@ class Solution:
             arr = arrays[i]
             res = max(
                 res,
-                max(arr[-1] - cur_min, cur_max - arr[0])
+                arr[-1] - cur_min, cur_max - arr[0]
             )
             cur_min = min(cur_min, arr[0])
             cur_max = max(cur_max, arr[-1])
