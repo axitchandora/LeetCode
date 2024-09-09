@@ -9,40 +9,24 @@ class Solution:
         top, bottom = 0, m
         grid = [[-1] * n for _ in range(m)]
         
-        while head:
-            # left to right
-            for i in range(left, right):
-                if not head:
-                    return grid
-                grid[top][i] = head.val
-                head = head.next
-            top += 1
-            
-            # top to bottom
-            for i in range(top, bottom):
-                if not head:
-                    return grid
-                grid[i][right-1] = head.val
-                head = head.next
-            right -= 1
-            
-            # right to left
-            
-            for i in range(right - 1 , left - 1, -1):
-                if not head:
-                    return grid
-                grid[bottom - 1][i] = head.val
-                head = head.next
-            bottom -= 1
-            
-            # bottom to top
-            
-            for i in range(bottom - 1 , top - 1, -1):
-                if not head:
-                    return grid
-                grid[i][left] = head.val
-                head = head.next
-            left += 1
+        directions = [[0,1],[1,0],[0,-1],[-1,0]]
+        r ,c , d= 0, 0 , 0 # current row, col & direction
         
+        while head:
+            dr , dc = directions[d]
+            
+            while (
+                head and
+                left <= c < right and
+                top <= r < bottom and
+                grid[r][c] == -1
+            ):
+                grid[r][c] = head.val
+                head = head.next
+                r , c = r + dr, c + dc
+            r , c = r - dr, c - dc
+            d = (d + 1) % 4            
+            dr , dc = directions[d]
+            r , c = r + dr, c + dc
         return grid
         
