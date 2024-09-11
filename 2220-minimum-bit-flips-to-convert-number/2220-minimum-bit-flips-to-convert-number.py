@@ -5,8 +5,8 @@ class Solution:
         while start or goal:
             if (start & 1 ) != (goal & 1):
                 res +=1
-            start = start // 2
-            goal = goal // 2
+            start = start >> 1
+            goal = goal >> 1
         
         return res
         
