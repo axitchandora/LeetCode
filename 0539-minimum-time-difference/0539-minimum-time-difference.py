@@ -1,21 +1,27 @@
 class Solution:
-    def findMinDifference(self, timePoints: List[str]) -> int:
-        timePoints.sort()
-        
-        
+    def findMinDifference(self, timePoints: List[str]) -> int:        
         def time_to_min(t):
             h, m = map(int, t.split(":"))
             return 60 * h + m
         
-        res = (24 * 60 - 
-               time_to_min(timePoints[-1]) +
-               time_to_min(timePoints[0])
-              )        
-        for i in range(len(timePoints) -1):
-            cur = time_to_min(timePoints[i+1])
-            prev = time_to_min(timePoints[i])
-            diff = cur - prev
-            res = min(res, diff)
-            if res == 0:
-                return res
+        exists = [False] * (60 * 24)
+        first_m, last_m = 60 * 24, 0
+        for t in timePoints:
+            m = time_to_min(t)
+            if exists[m]:
+                return 0
+            exists[m] = True
+            first_m = min(first_m, m)
+            last_m = max(last_m, m)
+            
+        res = (
+            60 * 24 -
+            last_m + first_m
+        )
+        prev_m = first_m
+        for m in range(first_m + 1, len(exists)):
+            if exists[m]:
+                diff = m - prev_m
+                res = min(diff,res)
+                prev_m = m
         return res
