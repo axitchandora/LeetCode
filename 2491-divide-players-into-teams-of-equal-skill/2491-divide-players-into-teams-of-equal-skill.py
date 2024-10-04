@@ -12,13 +12,13 @@ class Solution:
         for s in skill:
             if not count[s]:
                 continue
-            
+            count[s] -= 1
             diff = target - s
             if not count[diff]:
                 return -1
         
             res += s * diff
-            count[s] -= 1
+            
             count[diff] -= 1
             
         return res
