@@ -11,14 +11,11 @@ class Solution:
         
         i, j = 0, 0
         res = 0
-        groups = 0
         while i < len(intervals):
             if start[i] <= end[j]:
-                groups += 1
                 i += 1
-            else:
-                groups -= 1
+            else:     
                 j += 1
-            res = max(res, groups)
+            res = max(res, i - j)
         return res
         
