@@ -1,14 +1,19 @@
 class Solution:
     def findKthBit(self, n: int, k: int) -> str:
-        sequence = "0"
+        length = 2**n - 1
 
-        for i in range(1, n):
-            if k <= len(sequence):
-                break
-            sequence += "1"
-            inverted = "".join(
-                "1" if bit == "0" else "0" for bit in sequence[:-1]
-            )
-            sequence += inverted[::-1]
-
-        return sequence[k - 1]
+        def helper(length, k):
+            if length == 1:
+                return "0"
+            
+            half = length // 2
+            # 15 -> 7 , 8
+            if k <= half:
+                return helper(half, k)
+            elif k > half + 1:
+                res = helper(half, 1 + (length - k))
+                return "0" if res == "1" else "1"
+            else:
+                return "1"
+        
+        return helper(length, k)
