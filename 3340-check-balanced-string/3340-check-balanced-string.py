@@ -4,7 +4,7 @@ class Solution:
         even = 0
         for i,n in enumerate(num):
             if i % 2:
-                odd += int(n)
+                odd += ord(n) - ord("0")
             else:
-                even += int(n)
+                even += ord(n) - ord("0")
         return odd == even
