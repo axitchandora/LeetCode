@@ -1,0 +1,13 @@
+# Title: Counting Words With a Given Prefix
+# Submission ID: 1503212208
+# Status: Accepted
+# Date: January 9, 2025 at 10:42:59 PM GMT+5:30
+
+class Solution:
+    def prefixCount(self, words: List[str], pref: str) -> int:
+        N = len(pref)
+        res = 0
+        for w in words:
+            if w[:N] == pref:
+                res += 1
+        return res
