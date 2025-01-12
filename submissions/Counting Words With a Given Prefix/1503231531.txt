@@ -1,0 +1,40 @@
+# Title: Counting Words With a Given Prefix
+# Submission ID: 1503231531
+# Status: Accepted
+# Date: January 9, 2025 at 10:59:45 PM GMT+5:30
+
+class PrefixNode:
+    def __init__(self):
+        self.children = {}
+        self.count = 0
+
+class PrefixTree:
+    def __init__(self):
+        self.root = PrefixNode()
+   
+    def add(self, w):
+        cur = self.root
+        for c in w:
+            if c not in cur.children:
+                cur.children[c] = PrefixNode()
+            cur = cur.children[c]
+            cur.count += 1
+
+    def count(self, pref):
+        cur = self.root
+        for c in pref:
+            if c not in cur.children:
+                return 0
+            cur = cur.children[c]
+        return cur.count
+
+
+
+class Solution:
+    def prefixCount(self, words: List[str], pref: str) -> int:
+        prefix_tree = PrefixTree()
+
+        for w in words:
+            if len(w) >= len(pref):
+                prefix_tree.add(w)
+        return prefix_tree.count(pref)
