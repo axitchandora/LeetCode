@@ -1,0 +1,17 @@
+# Title: Construct K Palindrome Strings
+# Submission ID: 1504917580
+# Status: Accepted
+# Date: January 11, 2025 at 03:06:51 PM GMT+5:30
+
+class Solution:
+    def canConstruct(self, s: str, k: int) -> bool:
+        if k > len(s):
+            return False
+        
+        count = Counter(s)
+        odd = 0
+        for cnt in count.values():
+            odd += cnt % 2
+
+        return odd <= k
+        
