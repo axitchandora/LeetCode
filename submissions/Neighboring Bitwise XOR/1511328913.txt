@@ -1,0 +1,16 @@
+# Title: Neighboring Bitwise XOR
+# Submission ID: 1511328913
+# Status: Accepted
+# Date: January 17, 2025 at 02:27:12 PM GMT+5:30
+
+class Solution:
+    def doesValidArrayExist(self, derived: List[int]) -> bool:
+        first = 0
+        last = 0
+
+        for n in derived:
+            if n:
+                last = ~last
+
+        return first == last
+        
