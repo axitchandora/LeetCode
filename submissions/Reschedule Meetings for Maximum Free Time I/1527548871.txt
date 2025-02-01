@@ -1,0 +1,17 @@
+# Title: Reschedule Meetings for Maximum Free Time I
+# Submission ID: 1527548871
+# Status: Wrong Answer
+# Date: February 1, 2025 at 08:36:20 PM GMT+5:30
+
+class Solution:
+    def maxFreeTime(self, eventTime: int, k: int, startTime: List[int], endTime: List[int]) -> int:
+        meeting = [(startTime[i],endTime[i]) for i in range(len(startTime))]
+        meeting.append((eventTime,eventTime))
+        meeting.insert(0,(0,0))
+
+        freetime = []
+        for i in range(len(meeting) - 1):
+            freetime.append(meeting[i + 1][0] - meeting[i][1])
+        
+        freetime.sort(reverse=True)
+        return sum(freetime[:k + 1])
