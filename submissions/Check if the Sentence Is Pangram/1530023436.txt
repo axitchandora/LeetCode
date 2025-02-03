@@ -1,0 +1,12 @@
+# Title: Check if the Sentence Is Pangram
+# Submission ID: 1530023436
+# Status: Accepted
+# Date: February 3, 2025 at 10:24:06 PM GMT+5:30
+
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        seen = set()
+        for s in sentence:
+            if s.lower().isalpha():
+                seen.add(s.lower())
+        return len(seen) == 26
