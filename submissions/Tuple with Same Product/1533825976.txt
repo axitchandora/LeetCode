@@ -1,0 +1,23 @@
+# Title: Tuple with Same Product
+# Submission ID: 1533825976
+# Status: Accepted
+# Date: February 6, 2025 at 10:36:31 PM GMT+5:30
+
+class Solution:
+    def tupleSameProduct(self, nums: List[int]) -> int:
+        product_cnt = defaultdict(int) # n1 * n2 -> count
+        pair_cnt = defaultdict(int) # n1 * n2 -> count of pairs (a,b) and (c,d)
+
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                product = nums[i] * nums[j]
+                pair_cnt[product] += product_cnt[product]
+                product_cnt[product] += 1
+
+        res = 0
+        for cnt in pair_cnt.values():
+            res += 8 * cnt 
+        return res
+
+
+        
