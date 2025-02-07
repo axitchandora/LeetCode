@@ -1,0 +1,21 @@
+# Title: Happy Number
+# Submission ID: 1535016389
+# Status: Accepted
+# Date: February 7, 2025 at 11:17:24 PM GMT+5:30
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        slow, fast = n , n
+        def happynumber(num):
+            sume = 0
+            while num > 0:
+                t = num%10
+                sume += t * t
+                num //= 10
+            return sume
+        while True:
+            slow = happynumber(slow)
+            fast = happynumber(happynumber(fast))
+            if slow == fast:
+                break
+        return slow == 1
