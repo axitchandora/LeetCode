@@ -1,0 +1,17 @@
+# Title: Count Number of Bad Pairs
+# Submission ID: 1537279207
+# Status: Accepted
+# Date: February 9, 2025 at 11:43:29 PM GMT+5:30
+
+class Solution:
+    def countBadPairs(self, nums: List[int]) -> int:
+        
+        good_pairs = 0
+        total_pairs = 0
+        count = defaultdict(int)
+        for i in range(len(nums)):
+            total_pairs += i
+            good_pairs += count[nums[i] - i]
+            count[nums[i] - i] += 1
+
+        return total_pairs - good_pairs
