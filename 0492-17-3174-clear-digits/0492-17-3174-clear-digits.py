@@ -6,11 +6,9 @@ class Solution:
         def isdigit(c):
             return ord("0") <= ord(c) <= ord("9")
 
-        for i in reversed(range(len(s))):
+        for i in range(len(s)):
             if isdigit(s[i]):
-                delete_cnt += 1
-            elif delete_cnt:
-                delete_cnt -= 1
+                res.pop()
             else:
                 res.append(s[i])
-        return "".join(res[::-1])
+        return "".join(res)
